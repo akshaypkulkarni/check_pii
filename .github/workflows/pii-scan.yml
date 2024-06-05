@@ -1,28 +1,19 @@
 name: PII Scan
 
 on:
-  schedule:
-    - cron: '0 0 * * 0'  # Run every Sunday at midnight
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-
-  pii-scan:
+  scan:
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Scan for PII
+      uses: actions/checkout@v2
+    - name: Run TruffleHog
       uses: trufflesecurity/trufflehog@v3.2.0
       with:
-        scanArguments: "--regex --rules=pii-rules.json"
-        
-    - name: Upload results
-      uses: actions/upload-artifact@v3
-      with:
-        name: trufflehog-results
-        path: trufflehog_results.json
+        entryPoint: 'trufflehog'  # Correct input instead of 'scanArguments'
+        args: '--json --json=true'
