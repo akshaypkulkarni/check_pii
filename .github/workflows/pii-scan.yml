@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write  # Allows the workflow to read and write repository contents
+
 jobs:
   scan:
     runs-on: ubuntu-latest
