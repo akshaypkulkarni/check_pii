@@ -13,13 +13,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: List files for debugging
+      run: |
+        echo "Listing contents of the workspace"
+        ls -al
+
     - name: Run TruffleHog
       uses: trufflesecurity/trufflehog@v3.2.0
       with:
         entryPoint: 'trufflehog'
-        args: '--json'
+        args: '--json --jsonfile=results.json'
 
-    - name: Post results
+    - name: Print results
       if: always()
-      run: |
-        cat results.json
+      run: cat results.json
