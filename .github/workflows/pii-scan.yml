@@ -12,8 +12,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
     - name: Run TruffleHog
       uses: trufflesecurity/trufflehog@v3.2.0
       with:
-        entryPoint: 'trufflehog'  # Correct input instead of 'scanArguments'
-        args: '--json --json=true'
+        entryPoint: 'trufflehog'
+        args: '--json'
+
+    - name: Post results
+      if: always()
+      run: |
+        cat results.json
