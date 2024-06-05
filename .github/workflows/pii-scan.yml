@@ -20,6 +20,8 @@ jobs:
       run: |
         echo "Listing contents of the workspace"
         ls -al
+        echo "Checking Git status"
+        git status
 
     - name: Run TruffleHog
       uses: trufflesecurity/trufflehog@v3.2.0
