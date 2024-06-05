@@ -18,7 +18,7 @@ jobs:
     - name: Scan for PII
       uses: trufflesecurity/trufflehog@v3.2.0
       with:
-        scanArguments: "--regex --rules=/path/to/pii-rules.json"
+        scanArguments: "--regex --rules=pii-rules.json"
         
     - name: Upload results
       uses: actions/upload-artifact@v3
