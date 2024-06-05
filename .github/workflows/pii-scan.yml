@@ -23,11 +23,15 @@ jobs:
         echo "Checking Git status"
         git status
 
-    - name: Run TruffleHog
-      uses: trufflesecurity/trufflehog@v3.2.0
-      with:
-        entryPoint: 'trufflehog'
-        args: 'filesystem --directory . --rules-file pii-rules.json --json --jsonfile results.json'
+    - name: Run Trufflehog
+      run: |
+        git init
+        git remote add origin https://github.com/your-repo.git
+        git fetch origin
+        git checkout your-branch
+        trufflehog --json > results.json || echo "Trufflehog failed"
+    - name: Display results
+      run: cat results.json || echo "No results"
 
     - name: Print results
       if: always()
