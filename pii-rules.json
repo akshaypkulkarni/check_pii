@@ -1,0 +1,12 @@
+{
+  "regexes": [
+    {
+      "description": "PAN (Permanent Account Number)",
+      "regex": "^[A-Z]{5}[0-9]{4}[A-Z]$"
+    },
+    {
+      "description": "Aadhaar Number",
+      "regex": "^[0-9]{4}\\s[0-9]{4}\\s[0-9]{4}$"
+    }
+  ]
+}
